@@ -55,7 +55,16 @@ char *find_char(char *str, int c)
 */
 char *find_string(char *haystack, char *needle)
 {
-
+  for(int i = 0; i < strlen(haystack); i++)
+  {
+    for(int j = 0; j < strlen(needle); j++)
+    {
+      if(*(haystack+i)==*(needle+j))
+      {
+        
+      }
+    }
+  }
 }
 
 #ifndef TESTING
