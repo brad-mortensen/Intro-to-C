@@ -15,7 +15,14 @@
 */
 void string_copy(char *x, char *y)
 {
-
+  int counter = 0;
+  while (*(y + counter) != '\0')
+  {
+    *(x+counter)=*(y+counter);
+    counter++;
+  }
+  *(x+counter)=0;
+  return;
 }
 
 /*
@@ -28,7 +35,7 @@ void string_copy(char *x, char *y)
 */
 char *find_char(char *str, int c)
 {
-
+  
 }
 
 /*
