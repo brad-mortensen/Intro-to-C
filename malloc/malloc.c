@@ -54,8 +54,16 @@ void *resize_memory(void *ptr, int old_size, int new_size)
   char *ptr2 = ptr;
   if(old_size > new_size)
   {
-    return;
+    return ptr;
   }
+  char *ptr2_copy = malloc(new_size * sizeof(ptr[0]));
+  while(*ptr2 != '\0')
+  {
+    *ptr2_copy = *ptr2;  
+    ptr2++;
+    ptr2_copy++;
+  }
+  return ptr;
 }
 
 #ifndef TESTING
