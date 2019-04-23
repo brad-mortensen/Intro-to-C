@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 /*
     Given a character pointer x (that points to an array of chars), and a
     character pointer y, copies the character contents of y over to x. Pointer
@@ -15,13 +15,10 @@
 */
 void string_copy(char *x, char *y)
 {
-  int counter = 0;
-  while (*(y + counter) != '\0')
+  if (*x != '\0')
   {
-    *(x+counter)=*(y+counter);
-    counter++;
+    x = y;
   }
-  *(x+counter)=0;
   return;
 }
 
@@ -35,12 +32,13 @@ void string_copy(char *x, char *y)
 */
 char *find_char(char *str, int c)
 {
-  for(int i = 0; i < strlen(str); i++)
+  while (*str != '\0')
   {
-    if(*(str+i)==c)
+    if (*str == c)
     {
-      return &str[i];
+      return str;
     }
+    str++;
   }
   return NULL;
 }
@@ -55,27 +53,40 @@ char *find_char(char *str, int c)
 */
 char *find_string(char *haystack, char *needle)
 {
-  for(int i = 0; i < strlen(haystack); i++)
+  char *haystackCopy;
+  while (*haystack != '\0')
   {
-    for(int j = 0; j < strlen(needle); j++)
+    haystackCopy = haystack;
+    if (*haystackCopy == *needle)
     {
-      if(*(haystack+i)==*(needle+j))
+      while (*needle != '\0')
       {
-        
+        if (*haystackCopy != *needle)
+        {
+          return;
+        }
+        haystackCopy++;
+        needle++;
+        if (*needle == '\0')
+        {
+          return haystack;
+        }
       }
     }
+    haystack++;
   }
+  return NULL;
 }
 
 #ifndef TESTING
 int main(void)
 {
-    char *found_char = find_char(hello, 'e');
-    char *found_string = find_string(world, "or");
+  char *found_char = find_char('hello', 'e');
+  char *found_string = find_string('world', "or");
 
-    printf("Found char: %s\n", found_char);
-    printf("Found string: %s\n", found_string);
+  printf("Found char: %s\n", found_char);
+  printf("Found string: %s\n", found_string);
 
-    return 0;
+  return 0;
 }
 #endif
