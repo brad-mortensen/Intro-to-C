@@ -13,9 +13,14 @@ typedef struct Queue {
     instance of the Queue struct, and initializes all of the fields of the
     struct. Also allocates memory for the queue's storage structure. 
 */
-Queue *createQueue(unsigned capacity)
+struct Queue *createQueue(unsigned capacity)
 {
-
+  struct Queue *q = malloc(sizeof(struct Queue));
+  
+  q->storage = (int *)malloc(sizeof(storage));
+  q->length = 0;
+  q->capacity = capacity;
+  return q;
 }
 
 /*
